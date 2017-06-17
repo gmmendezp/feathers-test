@@ -7,10 +7,6 @@
   "keywords": [
     "feathers"
   ],
-  "author": {
-    "name": "Martin Mendez",
-    "email": "gmmendezp@gmail.com"
-  },
   "contributors": [],
   "bugs": {},
   "directories": {
@@ -22,10 +18,17 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "test": "npm run eslint && npm run mocha",
-    "eslint": "eslint src/. test/. --config .eslintrc.json",
-    "start": "node src/",
-    "mocha": "mocha test/ --recursive"
+    "start": "nodemon src/",
+    "test": "jest --env=node",
+    "lint": "standard --verbose | snazzy",
+    "format": "prettier --single-quote --no-semi --write \"**/*.js\" && standard --fix"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --single-quote --no-semi --write",
+      "standard --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -43,9 +46,14 @@
     "winston": "^2.3.1"
   },
   "devDependencies": {
-    "eslint": "^4.0.0",
-    "mocha": "^3.4.2",
+    "husky": "^0.13.4",
+    "jest": "^20.0.4",
+    "lint-staged": "^3.6.1",
+    "nodemon": "^1.11.0",
+    "prettier": "^1.4.4",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.1",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2"
   }
 }
